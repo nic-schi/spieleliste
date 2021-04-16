@@ -5,20 +5,29 @@
  */
 package spieleliste;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
+import listener.SpieleWindowAdapter;
 
-/**
- *
- * @author Nichl
- */
 public class Spieleliste extends JFrame {
 
-    /*je m'appele steeve et je suis le plus grang de taille de ma classe*/
-    /**
-     * @param args the command line arguments
-     */
+    public static Spieleliste spieleListe;
+
+    public Spieleliste() {
+        setTitle("Spieleliste");
+        // Setzt die Größe des Fenster auf minimum x, y
+        setMinimumSize(new Dimension(500, 400));
+        // Setzt das Fenster in die Mitte
+        setLocationRelativeTo(null);
+
+        // Sorgt dafür, dass das Fenster auch geschlossen wird.
+        addWindowListener(new SpieleWindowAdapter());
+        
+        setVisible(true);
+    }
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        Spieleliste.spieleListe = new Spieleliste();
     }
 
 }
