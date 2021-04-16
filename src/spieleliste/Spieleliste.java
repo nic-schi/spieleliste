@@ -10,7 +10,7 @@ package spieleliste;
  * @author Nichl
  */
 public class Spieleliste {
-
+ /*je m'appele steeve et je suis le plus grang de taille de ma classe*/
     /**
      * @param args the command line arguments
      */
