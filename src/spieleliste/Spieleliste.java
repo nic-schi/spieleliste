@@ -5,13 +5,17 @@
  */
 package spieleliste;
 
+import data.Spiel;
+import data.Spiele;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import liste.Liste;
 import listener.SpieleWindowAdapter;
 
 public class Spieleliste extends JFrame {
 
     public static Spieleliste spieleListe;
+    private Spiele spiele = new Spiele();
 
     public Spieleliste() {
         setTitle("Spieleliste");
@@ -20,12 +24,21 @@ public class Spieleliste extends JFrame {
         // Setzt das Fenster in die Mitte
         setLocationRelativeTo(null);
 
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
         // Sorgt dafür, dass das Fenster auch geschlossen wird.
-        addWindowListener(new SpieleWindowAdapter());
+        addWindowListener(new SpieleWindowAdapter(this));
+        
+        spiele.add(new Spiel("Mario bros. II", true, 400, 9.5));
+        spiele.add(new Spiel("Rocket League", false, 230, 6.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+
+        // Liste
+        add(new Liste(spiele));
         
         setVisible(true);
     }
-    
+
     public static void main(String[] args) {
         Spieleliste.spieleListe = new Spieleliste();
     }
