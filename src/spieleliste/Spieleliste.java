@@ -25,7 +25,7 @@ public class Spieleliste extends JFrame {
         setLocationRelativeTo(null);
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
+        
         // Sorgt dafür, dass das Fenster auch geschlossen wird.
         addWindowListener(new SpieleWindowAdapter(this));
         

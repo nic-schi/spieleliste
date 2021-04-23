@@ -38,7 +38,7 @@ public class SpieleWindowAdapter extends WindowAdapter {
         dialog.setMinimumSize(new Dimension(250, 140));
         dialog.setLocationRelativeTo(frame);
 
-        Container c = dialog.getContentPane();
+        Container contentPane = dialog.getContentPane();
         JPanel content = new JPanel();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.setBorder(new EmptyBorder(15, 15, 15, 15));
@@ -72,7 +72,7 @@ public class SpieleWindowAdapter extends WindowAdapter {
 
         content.add(label);
         content.add(buttonPanel);
-        c.add(content);
+        contentPane.add(content);
 
         dialog.setVisible(true);
     }
