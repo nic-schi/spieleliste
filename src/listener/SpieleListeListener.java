@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package listener;
 
 import data.Spiel;
@@ -11,16 +7,23 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
+ * Veränderungen bei der Listenselektion werden abgefangen.
  *
- * @author jtmey
+ * @author Nichlas
+ * @author Steeve
+ * @author Jan-Tilo
  */
-public class SpieleListeListener implements ListSelectionListener{
+public class SpieleListeListener implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        JList liste=(JList) e.getSource();
-        Spiel spiele=(Spiel) liste.getSelectedValue();
+        // Dass Event findet auf der Liste statt, sodass e.getSource() die Liste zurückgibt
+        JList liste = (JList) e.getSource();
+        // Das Selektierte Item der Liste ist vom Typ Spiel
+        Spiel spiele = (Spiel) liste.getSelectedValue();
+
+        // Ausgabe der Selektion
         System.out.println(spiele);
     }
-    
+
 }

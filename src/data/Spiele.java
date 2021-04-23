@@ -1,30 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import java.util.ArrayList;
 
 /**
+ * Verwaltet alle Spiele.
  *
- * @author Nichl
+ * @author Nichlas
+ * @author Steeve
+ * @author Jan-Tilo
  */
 public class Spiele {
-    
+
+    // Liste aller Spiele
     private ArrayList<Spiel> spiele = new ArrayList<>();
-    
+
+    // Fügt ein Spiel hinzu
     public void add(Spiel spiel) {
         spiele.add(spiel);
     }
-    
+
+    // Holt sich ein bestimmtes Spiel durch den gegebenen Index
     public Spiel get(int index) {
         return spiele.get(index);
     }
-    
+
+    // Gibt die Liste aller Spiele zurück
     public ArrayList<Spiel> getAll() {
         return this.spiele;
     }
-    
+
 }
