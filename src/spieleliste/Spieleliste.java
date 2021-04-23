@@ -32,7 +32,27 @@ public class Spieleliste extends JFrame {
         spiele.add(new Spiel("Mario bros. II", true, 400, 9.5));
         spiele.add(new Spiel("Rocket League", false, 230, 6.5));
         spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-
+        spiele.add(new Spiel("Stalker Call of Pripiyat", true, 100, 10));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        
+        
         // Liste
         add(new Liste(spiele));
         
