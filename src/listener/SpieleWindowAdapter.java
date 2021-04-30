@@ -22,6 +22,7 @@ public class SpieleWindowAdapter extends WindowAdapter {
     }
 
     @Override
+    // Wird ausgeführt, wenn das Fenster dabei ist sich zu schließen
     public void windowClosing(WindowEvent e) {
         //        JDialog dialog = new JDialog(frame, "Sind Sie sicher?");
         //        dialog.setMinimumSize(new Dimension(250, 140));

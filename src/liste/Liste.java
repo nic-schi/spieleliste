@@ -13,7 +13,7 @@ import listener.SpieleListeListener;
 
 /**
  * Stellt die Liste dar.<br>
- * Hier werden alle Spiele aufgelistet
+ * Hier werden alle Spiele aufgelistet.
  *
  * @author Nichlas
  * @author Steeve
@@ -48,7 +48,7 @@ public class Liste extends JPanel {
 
         // Fügt ein BorderLayout hinzu
         setLayout(new BorderLayout());
-
+        
         // Platziert die Komponenten auf die jeweilligen BorderLayout stellen
         add(new JLabel("Alle aktuellen Spiele"), BorderLayout.NORTH);
         add(new JScrollPane(liste), BorderLayout.CENTER);

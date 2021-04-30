@@ -2,7 +2,19 @@ package spieleliste;
 
 import data.Spiel;
 import data.Spiele;
+import data.dao.SpieleDAO;
 import java.awt.Dimension;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import liste.Liste;
 import listener.SpieleWindowAdapter;
@@ -20,6 +32,8 @@ public class Spieleliste extends JFrame {
     public static Spieleliste spieleListe;
     private Spiele spiele = new Spiele();
 
+    public static final String FILE_PATH = "./data/datenbank.db";
+
     public Spieleliste() {
         setTitle("Spieleliste");
         // Setzt die Größe des Fenster auf minimum x, y
@@ -34,29 +48,25 @@ public class Spieleliste extends JFrame {
         // Sorgt dafür, dass das Fenster auch geschlossen wird.
         addWindowListener(new SpieleWindowAdapter(this));
 
-        // Beispieldaten
-        spiele.add(new Spiel("Mario bros. II", true, 400, 9.5));
-        spiele.add(new Spiel("Rocket League", false, 230, 6.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Stalker Call of Pripiyat", true, 100, 10));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        // Erstelle beispieldaten
+        // erstelleBeispielDaten();
+        
+        // Lese alle Spiele ein
+        try {
+            // Erstelle die Datenbankdatei
+            erstelleDatei();
+
+            // Lese alle Spiele
+            DataInputStream in = Spieleliste.getInputStream(FILE_PATH);
+            // Inititalisiere neues SpieleDAO objekt. Dabei ist der Outputstream null, da wir die Datei nicht leeren wollen
+            SpieleDAO spieleDAO = new SpieleDAO(in, null);
+            spieleDAO.read(spiele);
+
+            // Schließen des Inputstreams
+            in.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Spieleliste.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         // Füge die Liste hinzu
         add(new Liste(spiele));
@@ -70,8 +80,41 @@ public class Spieleliste extends JFrame {
         Spieleliste.spieleListe = new Spieleliste();
     }
 
+    // Erstellt die Datenbankdatei die zur Speicherung benötigt wird
+    private void erstelleDatei() throws IOException {
+        File file = new File(FILE_PATH);
+        file.createNewFile();
+    }
+
+    // Gibt alle aktuellen Spiele zurück
     public Spiele getSpiele() {
         return this.spiele;
+    }
+
+    // Gibt einen Outputsream zurück
+    public static DataOutputStream getOutputStream(String path) throws FileNotFoundException {
+        // Outputstreams
+        FileOutputStream fileOut = new FileOutputStream(path);
+        BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
+        DataOutputStream dataOut = new DataOutputStream(buffOut);
+        return dataOut;
+    }
+
+    // Gibt einen Inputstream zurück
+    public static DataInputStream getInputStream(String path) throws FileNotFoundException {
+        // Inputsreams
+        FileInputStream fileIn = new FileInputStream(path);
+        BufferedInputStream buffIn = new BufferedInputStream(fileIn);
+        DataInputStream dataIn = new DataInputStream(buffIn);
+        return dataIn;
+    }
+
+    // Erstellt Beispieldaten zur Veranschaulichung
+    private void erstelleBeispielDaten() {
+        spiele.add(new Spiel("Mario bros. II", true, 400, 9.5));
+        spiele.add(new Spiel("Rocket League", false, 230, 6.5));
+        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Stalker Call of Pripiyat", true, 100, 10));
     }
 
 }
