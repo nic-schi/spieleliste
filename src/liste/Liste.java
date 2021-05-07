@@ -9,6 +9,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
 import listener.SpieleListeListener;
 
 /**
@@ -25,16 +26,18 @@ public class Liste extends JPanel {
     private JList liste;
     private Spiele spiele;
 
-    public Liste(Spiele spiele) {
+    public Liste(Spiele spiele, ListeVorschau listeVorschau) {
         this.spiele = spiele;
         this.dataModel = new DefaultListModel();
         this.liste = new JList(dataModel);
+
+        setBorder(new EmptyBorder(5, 15, 5, 15));
 
         // Liste aktualisieren
         refresh();
 
         // Setze den Selectionlistener
-        liste.addListSelectionListener(new SpieleListeListener());
+        liste.addListSelectionListener(new SpieleListeListener(listeVorschau));
 
         // Zeigt mindestens x Spiele in der Liste an
         liste.setVisibleRowCount(12);
@@ -48,7 +51,7 @@ public class Liste extends JPanel {
 
         // Fügt ein BorderLayout hinzu
         setLayout(new BorderLayout());
-        
+
         // Platziert die Komponenten auf die jeweilligen BorderLayout stellen
         add(new JLabel("Alle aktuellen Spiele"), BorderLayout.NORTH);
         add(new JScrollPane(liste), BorderLayout.CENTER);

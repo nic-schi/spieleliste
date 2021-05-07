@@ -3,6 +3,8 @@ package spieleliste;
 import data.Spiel;
 import data.Spiele;
 import data.dao.SpieleDAO;
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -17,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import liste.Liste;
+import liste.ListeVorschau;
 import listener.SpieleWindowAdapter;
 
 /**
@@ -49,8 +52,8 @@ public class Spieleliste extends JFrame {
         addWindowListener(new SpieleWindowAdapter(this));
 
         // Erstelle beispieldaten
-        // erstelleBeispielDaten();
-        
+//        erstelleBeispielDaten();
+
         // Lese alle Spiele ein
         try {
             // Erstelle die Datenbankdatei
@@ -68,8 +71,19 @@ public class Spieleliste extends JFrame {
             Logger.getLogger(Spieleliste.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Füge die Liste hinzu
-        add(new Liste(spiele));
+        // Hole die Contentpane
+        Container c = this.getContentPane();
+        c.setLayout(new BorderLayout());
+
+        // Panel hinufügen
+        // Listevorschau
+        ListeVorschau listeVorschau = new ListeVorschau();
+
+        // Liste
+        Liste liste = new Liste(spiele, listeVorschau);
+
+        c.add(liste, BorderLayout.CENTER);
+        c.add(listeVorschau, BorderLayout.EAST);
 
         // Zeige die Anwendung
         setVisible(true);
