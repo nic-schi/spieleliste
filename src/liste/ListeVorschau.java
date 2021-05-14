@@ -31,7 +31,7 @@ public class ListeVorschau extends JPanel {
         setBorder(new EmptyBorder(5, 15, 5, 15));
 
         // Formatiert die Felder
-        formatFelder();
+        formatiereFelder();
 
         add(new JLabel("Aktuelles Spiel"));
         // Füge felder hinzu
@@ -42,7 +42,7 @@ public class ListeVorschau extends JPanel {
     }
 
     // Formatiert die Felder
-    private void formatFelder() {
+    private void formatiereFelder() {
         // Stunden (int)
         // Setzt das Maximum, Minimum und die Stepsize des Feldes
         stundenFeld.setModel(new SpinnerNumberModel(/* VALUE */0, /* MIN */ 0, /* MAX */ Integer.MAX_VALUE, /* STEPSIZE */ 10));
@@ -50,11 +50,10 @@ public class ListeVorschau extends JPanel {
         // Bewertung (double)
         // Setzt das Maximum, Minimum und die Stepsize des Feldes
         bewertungsFeld.setModel(new SpinnerNumberModel(/* VALUE */0, /* MIN */ 0, /* MAX */ 10, /* STEPSIZE */ 0.10));
-        // Setzt das Format der Nummer
     }
 
     // Stellt das Spiel in der Vorschau dar
-    public void display(Spiel spiel) {
+    public void zeige(Spiel spiel) {
         // Setze die daten auf die Felder
         nameFeld.setText(spiel.getName());
         durchgespieltFeld.setSelected(spiel.isDurchgespielt());

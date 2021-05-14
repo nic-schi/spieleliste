@@ -53,7 +53,6 @@ public class Spieleliste extends JFrame {
 
         // Erstelle beispieldaten
 //        erstelleBeispielDaten();
-
         // Lese alle Spiele ein
         try {
             // Erstelle die Datenbankdatei
@@ -111,6 +110,7 @@ public class Spieleliste extends JFrame {
         FileOutputStream fileOut = new FileOutputStream(path);
         BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
         DataOutputStream dataOut = new DataOutputStream(buffOut);
+
         return dataOut;
     }
 
@@ -120,6 +120,7 @@ public class Spieleliste extends JFrame {
         FileInputStream fileIn = new FileInputStream(path);
         BufferedInputStream buffIn = new BufferedInputStream(fileIn);
         DataInputStream dataIn = new DataInputStream(buffIn);
+
         return dataIn;
     }
 

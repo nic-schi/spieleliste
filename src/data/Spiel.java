@@ -37,7 +37,7 @@ public class Spiel {
         return this.durchgespielt;
     }
 
-    // Gibt die Stunden zurücks
+    // Gibt die Stunden zurück
     public int getStunden() {
         return this.stunden;
     }
