@@ -36,6 +36,7 @@ public class Spieleliste extends JFrame {
     private Spiele spiele = new Spiele();
 
     public static final String FILE_PATH = "./data/datenbank.db";
+    private Liste liste;
 
     public Spieleliste() {
         setTitle("Spieleliste");
@@ -63,6 +64,8 @@ public class Spieleliste extends JFrame {
             // Inititalisiere neues SpieleDAO objekt. Dabei ist der Outputstream null, da wir die Datei nicht leeren wollen
             SpieleDAO spieleDAO = new SpieleDAO(in, null);
             spieleDAO.read(spiele);
+            
+            System.out.println(spiele.getAll().size() + " Spiele geladen!");
 
             // Schließen des Inputstreams
             in.close();
@@ -76,10 +79,10 @@ public class Spieleliste extends JFrame {
 
         // Panel hinufügen
         // Listevorschau
-        ListeVorschau listeVorschau = new ListeVorschau();
+        ListeVorschau listeVorschau = new ListeVorschau(this);
 
         // Liste
-        Liste liste = new Liste(spiele, listeVorschau);
+        this.liste = new Liste(spiele, listeVorschau);
 
         c.add(liste, BorderLayout.CENTER);
         c.add(listeVorschau, BorderLayout.EAST);
@@ -102,6 +105,10 @@ public class Spieleliste extends JFrame {
     // Gibt alle aktuellen Spiele zurück
     public Spiele getSpiele() {
         return this.spiele;
+    }
+
+    public Liste getListe() {
+        return this.liste;
     }
 
     // Gibt einen Outputsream zurück

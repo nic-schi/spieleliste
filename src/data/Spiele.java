@@ -24,6 +24,10 @@ public class Spiele {
         return spiele.get(index);
     }
 
+    public boolean remove(Spiel spiel) {
+        return this.spiele.remove(spiel);
+    }
+
     // Gibt die Liste aller Spiele zurück
     public ArrayList<Spiel> getAll() {
         return this.spiele;

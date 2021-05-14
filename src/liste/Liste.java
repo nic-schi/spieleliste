@@ -16,9 +16,9 @@ import listener.SpieleListeListener;
  * Stellt die Liste dar.<br>
  * Hier werden alle Spiele aufgelistet.
  *
- * @author Nichlas
- * @author Steeve
  * @author Jan-Tilo
+ * @author Steeve
+ * @author Nichlas
  */
 public class Liste extends JPanel {
 

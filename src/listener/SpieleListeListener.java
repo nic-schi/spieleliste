@@ -29,7 +29,9 @@ public class SpieleListeListener implements ListSelectionListener {
         // Das Selektierte Item der Liste ist vom Typ Spiel
         Spiel spiel = (Spiel) liste.getSelectedValue();
 
-        listeVorschau.zeige(spiel);
+        if (spiel != null) {
+            listeVorschau.zeige(spiel);
+        }
     }
 
 }
