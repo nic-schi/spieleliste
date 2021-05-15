@@ -3,7 +3,7 @@ package data.dao;
 /**
  *
  * Implementierung des DAO-Patterns.
- * 
+ *
  * @author Nichlas
  * @author Jan-Tilo
  * @author Steeve

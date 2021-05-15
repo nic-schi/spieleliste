@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package liste;
+package panels;
 
 import java.awt.Color;
 import javax.swing.BoxLayout;
@@ -18,7 +13,7 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Steeve
  * @author Nichlas
- * @author Jan-Tilos
+ * @author Jan-Tilo
  */
 public class FormularFeld extends JPanel {
 
@@ -27,7 +22,8 @@ public class FormularFeld extends JPanel {
         labelPanel.add(new JLabel(titel));
 
         labelPanel.setBackground(Color.lightGray);
-        setBorder(new EmptyBorder(10, 0, 10, 0));
+
+        setBorder(new EmptyBorder(0, 0, 15, 0));
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         add(labelPanel);

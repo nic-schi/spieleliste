@@ -1,4 +1,3 @@
-
 package listener;
 
 import data.Spiel;
@@ -10,14 +9,14 @@ import liste.ListeVorschau;
 /**
  * Veränderungen bei der Listenselektion werden abgefangen.
  *
- * @author Nichlas
  * @author Steeve
+ * @author Nichlas
  * @author Jan-Tilo
  */
 public class SpieleListeListener implements ListSelectionListener {
 
     private ListeVorschau listeVorschau;
-    
+
     public SpieleListeListener(ListeVorschau listeVorschau) {
         this.listeVorschau = listeVorschau;
     }
