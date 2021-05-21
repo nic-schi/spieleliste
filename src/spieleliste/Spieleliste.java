@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import liste.Liste;
 import liste.ListeVorschau;
 import listener.SpieleWindowAdapter;
@@ -47,13 +48,13 @@ public class Spieleliste extends JFrame {
         // Soll standardmäßig nichts beim schließen tun.
         // Das tatsächliche schließen wird durch den SpieleWindowAdapter implementiert
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
         // Sorgt dafür, dass das Fenster auch geschlossen wird.
+        setJMenuBar(createMenuBar());
+        // Stellt das Menu
         addWindowListener(new SpieleWindowAdapter(this));
 
         // Erstelle beispieldaten
 //        erstelleBeispielDaten();
-
         // Lese alle Spiele ein
         try {
             // Erstelle die Datenbankdatei
@@ -111,6 +112,7 @@ public class Spieleliste extends JFrame {
         FileOutputStream fileOut = new FileOutputStream(path);
         BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
         DataOutputStream dataOut = new DataOutputStream(buffOut);
+
         return dataOut;
     }
 
@@ -120,15 +122,23 @@ public class Spieleliste extends JFrame {
         FileInputStream fileIn = new FileInputStream(path);
         BufferedInputStream buffIn = new BufferedInputStream(fileIn);
         DataInputStream dataIn = new DataInputStream(buffIn);
+
         return dataIn;
     }
 
     // Erstellt Beispieldaten zur Veranschaulichung
     private void erstelleBeispielDaten() {
         spiele.add(new Spiel("Mario bros. II", true, 400, 9.5));
-        spiele.add(new Spiel("Rocket League", false, 230, 6.5));
-        spiele.add(new Spiel("Cyberpunk", true, 20, 2.5));
+        spiele.add(new Spiel("Rocket League", false, 240, 6.5));
+        spiele.add(new Spiel("Cyberpunk", true, 28, 2.5));
         spiele.add(new Spiel("Stalker Call of Pripiyat", true, 100, 10));
+    }
+
+    private JMenuBar createMenuBar() { 
+       
+        
+        return null;
+        //To change body of generated methods, choose Tools | Templates.
     }
 
 }

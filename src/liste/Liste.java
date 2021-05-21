@@ -34,7 +34,7 @@ public class Liste extends JPanel {
         setBorder(new EmptyBorder(5, 15, 5, 15));
 
         // Liste aktualisieren
-        refresh();
+        aktualisieren();
 
         // Setze den Selectionlistener
         liste.addListSelectionListener(new SpieleListeListener(listeVorschau));
@@ -58,7 +58,7 @@ public class Liste extends JPanel {
     }
 
     // Aktualisiert die Liste
-    public void refresh() {
+    public void aktualisieren() {
         // Löschen der Spiele in dem Datamodel
         dataModel.clear();
         // Fügt alle Spiele hinzu
