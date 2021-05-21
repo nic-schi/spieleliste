@@ -15,21 +15,23 @@ import liste.ListeVorschau;
  */
 public class SpieleListeListener implements ListSelectionListener {
 
-    private ListeVorschau listeVorschau;
+    private ListeVorschau vorschau;
 
-    public SpieleListeListener(ListeVorschau listeVorschau) {
-        this.listeVorschau = listeVorschau;
+    public SpieleListeListener(ListeVorschau vorschau) {
+        this.vorschau = vorschau;
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
         // Dass Event findet auf der Liste statt, sodass e.getSource() die Liste zurückgibt
         JList liste = (JList) e.getSource();
+
         // Das Selektierte Item der Liste ist vom Typ Spiel
         Spiel spiel = (Spiel) liste.getSelectedValue();
 
         if (spiel != null) {
-            listeVorschau.zeige(spiel);
+            // Zeige das Spiel auf der Vorschau an
+            vorschau.zeige(spiel);
         }
     }
 

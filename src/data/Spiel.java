@@ -1,7 +1,7 @@
 package data;
 
 /**
- * Verwaltet ein einzelnes Spiel.
+ * Verwaltet das Datenobjekt: Spiel
  *
  * @author Nichlas
  * @author Steeve

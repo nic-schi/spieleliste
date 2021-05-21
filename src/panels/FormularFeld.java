@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  *
- * Verwaltet ein einzelnes Formularfeld
+ * Formt den mitgegebenen Text in ein Formularfeld mit Bezeichner um.
  *
  * @author Steeve
  * @author Nichlas
@@ -26,6 +26,7 @@ public class FormularFeld extends JPanel {
         setBorder(new EmptyBorder(0, 0, 15, 0));
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
+        // Füge die Komponenten hinzu
         add(labelPanel);
         add(feld);
     }

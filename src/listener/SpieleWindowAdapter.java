@@ -23,49 +23,51 @@ public class SpieleWindowAdapter extends WindowAdapter {
     @Override
     // Wird ausgeführt, wenn das Fenster dabei ist sich zu schließen
     public void windowClosing(WindowEvent e) {
-        //        JDialog dialog = new JDialog(frame, "Sind Sie sicher?");
-        //       dialog.setMinimumSize(new Dimension(250, 140));
-        //        dialog.setLocationRelativeTo(frame);
-        //
-        //        Container contentPane = dialog.getContentPane();
-        //        JPanel content = new JPanel();
-        //        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-        //        content.setBorder(new EmptyBorder(15, 15, 15, 15));
-        //
-        //        JPanel buttonPanel = new JPanel();
-        //
-        //        // ja
-        //        JButton jaButton = new JButton("Ja");
-        //        jaButton.addActionListener(new ActionListener() {
-        //            @Override
-        //            public void actionPerformed(ActionEvent e) {
-        //                System.exit(0);
-        //            }
-        //        });
-        //
-        //        // nein
-        //        JButton neinButton = new JButton("Nein");
-        //        neinButton.addActionListener(new ActionListener() {
-        //            @Override
-        //            public void actionPerformed(ActionEvent e) {
-        //                dialog.setVisible(false);
-        //            }
-        //        });
-        //
-        //        buttonPanel.add(jaButton);
-        //        buttonPanel.add(neinButton);
-        //
-        //        // label
-        //        JLabel label = new JLabel("Es könnten Daten verloren gehen.");
-        //        label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        //
-        //        content.add(label);
-        //        content.add(buttonPanel);
-        //        contentPane.add(content);
+//        JDialog dialog = new JDialog(frame, "Sind Sie sicher?");
+//        dialog.setMinimumSize(new Dimension(250, 140));
+//        dialog.setLocationRelativeTo(frame);
+//
+//        Container contentPane = dialog.getContentPane();
+//        JPanel content = new JPanel();
+//        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+//        content.setBorder(new EmptyBorder(15, 15, 15, 15));
+//
+//        JPanel buttonPanel = new JPanel();
+//
+//        // ja
+//        JButton jaButton = new JButton("Ja");
+//        jaButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                System.exit(0);
+//            }
+//        });
+//
+//        // nein
+//        JButton neinButton = new JButton("Nein");
+//        neinButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                dialog.setVisible(false);
+//            }
+//        });
+//
+//        buttonPanel.add(jaButton);
+//        buttonPanel.add(neinButton);
+//
+//        // label
+//        JLabel label = new JLabel("Es könnten Daten verloren gehen.");
+//        label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+//
+//        content.add(label);
+//        content.add(buttonPanel);
+//        contentPane.add(content);
 
-        //        dialog.setVisible(true);
+//        dialog.setVisible(true);
+//
         // gibt einen Dialog aus, der aktuell YES und NO anzeigt.
-        int returned = JOptionPane.showConfirmDialog(frame, "Es könnten Daten verloren gehen.", "Sind Sie Sicher?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int returned = JOptionPane.showConfirmDialog(frame, "Es könnten evtl. Daten verloren gehen.", "Sind Sie Sicher?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
         // Prüfung der Auswahl
         if (returned == JOptionPane.YES_OPTION) {
             System.exit(0);

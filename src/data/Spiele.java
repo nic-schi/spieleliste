@@ -39,6 +39,11 @@ public class Spiele {
         return false;
     }
 
+    // Leert die Liste der Spiele
+    public void clear() {
+        this.spiele.clear();
+    }
+
     // Gibt die Liste aller Spiele zurück
     public ArrayList<Spiel> getAll() {
         return this.spiele;

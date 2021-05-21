@@ -26,7 +26,7 @@ public class Liste extends JPanel {
     private JList liste;
     private Spiele spiele;
 
-    public Liste(Spiele spiele, ListeVorschau listeVorschau) {
+    public Liste(Spiele spiele, ListeVorschau vorschau) {
         this.spiele = spiele;
         this.dataModel = new DefaultListModel();
         this.liste = new JList(dataModel);
@@ -36,20 +36,21 @@ public class Liste extends JPanel {
         // Liste aktualisieren
         aktualisieren();
 
-        // Setze den Selectionlistener
-        liste.addListSelectionListener(new SpieleListeListener(listeVorschau));
+        // Setze den SelectionListener
+        liste.addListSelectionListener(new SpieleListeListener(vorschau));
 
         // Zeigt mindestens x Spiele in der Liste an
         liste.setVisibleRowCount(12);
+
         // Setzt das Selektionsmodell auf Einzelselektierung
         liste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Setzt die Hintergrundfarbe
         liste.setSelectionBackground(new Color(146, 159, 238));
+
         // Setzt die Größe der einzelnen Zellen
         liste.setFixedCellHeight(25);
 
-        // Fügt ein BorderLayout hinzu
         setLayout(new BorderLayout());
 
         // Platziert die Komponenten auf die jeweilligen BorderLayout stellen
@@ -57,7 +58,7 @@ public class Liste extends JPanel {
         add(new JScrollPane(liste), BorderLayout.CENTER);
     }
 
-    // Aktualisiert die Liste
+    // Aktualisiert die Liste samt Datamodel
     public void aktualisieren() {
         // Löschen der Spiele in dem Datamodel
         dataModel.clear();

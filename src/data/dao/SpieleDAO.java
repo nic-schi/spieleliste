@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 /**
  *
  * Verwaltet die Speicherung und Lesung von allen Spielen.
+ * <br>Implementiert das DAO-Pattern aus dem DAO-Interface.
  *
  * @author Nichlas
  * @author Jan-Tilo

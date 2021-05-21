@@ -8,8 +8,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -29,20 +27,22 @@ import spieleliste.Spieleliste;
 /**
  *
  * Verwaltet die Vorschau des gegebenen Spiels.
+ * <br>Beeinhaltet anonyme Klasse: ButtonPanel
  *
  * @author Nichlas
  * @author Jan-Tilo
  * @author Steeve
  */
-
 public class ListeVorschau extends JPanel {
 
     /**
-     * Verwaltet die Knöpfe auf der ListeVorschau
+     * Verwaltet die Knöpfe auf der Listenvorschau.
+     * <br>Sorgt auch für die Logik hinter der Speicherung, Löschung und neuen
+     * Erstellung.
      *
      * @author Nichlas
-     * @author Jan-Tilo
      * @author Steeve
+     * @author Jan-Tilo
      */
     public class ButtonPanel extends JPanel implements ActionListener {
 
@@ -74,45 +74,61 @@ public class ListeVorschau extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            // Speichern
             if (e.getSource().equals(speicherButton)) {
-                // Speichern
+                // Holt sich die Werte aus dem Formular
+                // ist null, sollte der Benutzer falsche Eingaben getätigt haben
                 Spiel spiel = getFelderWerte(new Spiel());
 
                 if (spiel != null) {
+                    // Lädt die Formularwerte in das aktuelle Spiel ein
                     getFelderWerte(aktuellesSpiel);
+
+                    // Speichern der Spiele
                     speichern();
 
                     System.out.println("Spiel gespeichert \t-->\t " + aktuellesSpiel);
                 }
             } else if (e.getSource().equals(löschenButton)) {
                 // Löschen
+
                 // gibt einen Dialog aus, der aktuell YES und NO anzeigt.
-                int returned = JOptionPane.showConfirmDialog(frame, "Wollen Sie das Ausgewählte Spiel wirklich Löschen?\n\n--    \"" + aktuellesSpiel + "\"\n\n", "Sind Sie Sicher?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int input = JOptionPane.showConfirmDialog(frame, ""
+                        + "Wollen Sie das Ausgewählte Spiel wirklich Löschen?\n"
+                        + "\n--    \"" + aktuellesSpiel + "\"\n\n",
+                        "Sind Sie Sicher?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
                 // Prüfung der Auswahl
-                if (returned == JOptionPane.YES_OPTION) {
+                if (input == JOptionPane.YES_OPTION) {
+                    // Hole alle Spiele und entferne das aktuelle Spiel
                     Spiele spiele = frame.getSpiele();
                     spiele.remove(aktuellesSpiel);
 
+                    // Speichern der Spiele
                     speichern();
 
                     System.out.println("Spiel gelöscht \t-->\t " + aktuellesSpiel);
                 }
             } else if (e.getSource().equals(neuButton)) {
+                // Neues Spiel
+
+                // Hole die Felderwerte in ein Temporäres Spiel
+                // ist null, sollte der Benutzer falsche Eingaben getätigt haben
                 Spiel spiel = getFelderWerte(new Spiel());
 
                 if (spiel != null) {
-                    // guck ob das Spiel bereits vorhanden ist
-                    if (aktuellesSpiel.getName().equalsIgnoreCase(spiel.getName())) {
-                        // Spiel ist bereits vorhanden
-                        nameFeld.setBorder(errorBorder);
+                    // guck nach, ob das Spiel bereits vorhanden ist
+                    if (frame.getSpiele().hatSpiel(spiel.getName())) {
+                        nameFeld.setBorder(ListeVorschau.this.errorBorder);
 
                         // gibt einen Dialog aus, der aktuell OK und CANCEL anzeigt.
                         JOptionPane.showConfirmDialog(frame, "Dieses Spiel ist bereits vorhanden", "Falsche Eingabe!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                     } else {
-                        // Spiel nicht vorhanden
+                        // Hole alle spiele und füge das neue hinzu
                         Spiele spiele = frame.getSpiele();
                         spiele.add(spiel);
 
+                        // Speichern der Spiele
                         speichern();
 
                         System.out.println("Neues Spiel \t-->\t " + spiel);
@@ -124,26 +140,27 @@ public class ListeVorschau extends JPanel {
         // Speichert die Spiele ab
         public void speichern() {
             try {
+                // Hole Outputstream
                 DataOutputStream out = Spieleliste.getOutputStream(Spieleliste.FILE_PATH);
+
                 // Inititalisiere neues SpieleDAO objekt. Dabei ist der InputStream null
                 SpieleDAO spieleDAO = new SpieleDAO(null, out);
                 spieleDAO.write(frame.getSpiele());
 
                 out.close();
 
+                // Liste aktualisieren
                 frame.getListe().aktualisieren();
-                reset();
 
-//                System.out.println(frame.getSpiele().getAll().size() + " Spiele gespeichert!");
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+                // Setzt das Formular auf die Standardwerte zurück
+                ListeVorschau.this.zurücksetzen();
+            } catch (Exception ex) {
                 Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
     } // ENDE ButtonPanel
 
-    // Felder
     private Spieleliste frame;
 
     // Alle Formularfelder
@@ -158,7 +175,7 @@ public class ListeVorschau extends JPanel {
     // Error
     private int thickness = 3;
     private Color errorFarbe = new Color(169, 98, 98);
-    private Border errorBorder = new LineBorder(errorFarbe, thickness);
+    private Border errorBorder = new LineBorder(this.errorFarbe, this.thickness);
 
     public ListeVorschau(Spieleliste frame) {
         this.frame = frame;
@@ -182,7 +199,9 @@ public class ListeVorschau extends JPanel {
     }
 
     // Holt den Inhalt der Formularfelder und speichert diese im mitgegebenen Spiel
+    // ist null, wenn der Benutzer falsche Werte eingegeben hat
     public Spiel getFelderWerte(Spiel spiel) {
+        // Prüft auf Validität
         if (istValide()) {
             // Bezeichnung
             spiel.setName(nameFeld.getText());
@@ -201,24 +220,24 @@ public class ListeVorschau extends JPanel {
         return null;
     }
 
-    // Prüft ob die eingaben in den Formularfeldern valide sind und gibt jenachdem fehlermeldungen aus
+    // Prüft ob die eingaben in den Formularfeldern valide sind und gibt je nachdem fehlermeldungen aus
     public boolean istValide() {
-        LineBorder border = new LineBorder(errorFarbe, thickness);
-
         // Bezeichnung
         String bezeichnung = nameFeld.getText();
 
+        // Bezeichnung länger als 150 Zeichen
         if (bezeichnung.length() > 150) {
-            // Bezeichnung länger als 150 Zeichen
-            nameFeld.setBorder(border);
+            nameFeld.setBorder(this.errorBorder);
 
             JOptionPane.showConfirmDialog(frame, "Die Bezeichnung darf maximal 75 Zeichen betragen.", "Falsche Eingabe!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
             return false;
         } else if (bezeichnung.isEmpty()) {
             // Bezeichnung ist leer
-            nameFeld.setBorder(border);
+            nameFeld.setBorder(this.errorBorder);
 
             JOptionPane.showConfirmDialog(frame, "Die Bezeichnung darf nicht leer sein.", "Falsche Eingabe!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
             return false;
         }
 
@@ -227,9 +246,10 @@ public class ListeVorschau extends JPanel {
 
         if (stunden < 0) {
             // Stunden sind negativ
-            stundenFeld.setBorder(border);
+            stundenFeld.setBorder(this.errorBorder);
 
             JOptionPane.showConfirmDialog(frame, "Die Stunden können nicht negativ sein.", "Falsche Eingabe!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
             return false;
         }
 
@@ -238,16 +258,18 @@ public class ListeVorschau extends JPanel {
 
         if (bewertung < 0) {
             // Bewertung ist negativ
-            bewertungsFeld.setBorder(border);
+            bewertungsFeld.setBorder(this.errorBorder);
 
             JOptionPane.showConfirmDialog(frame, "Die Bewertung kann nicht negativ sein.", "Falsche Eingabe!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
             return false;
         }
 
+        // Hat die Prüfung überlebt = true
         return true;
     }
 
-    // Formatiert die Felder
+    // Formatiert die Formularfelder
     private void formatiereFelder() {
         // Stunden (int)
         // Setzt das Maximum, Minimum und die Stepsize des Feldes
@@ -268,18 +290,19 @@ public class ListeVorschau extends JPanel {
     }
 
     // Setzt die Formularfelder zurück
-    public void reset() {
+    public void zurücksetzen() {
         // Inhalte der Felder
         nameFeld.setText("");
         durchgespieltFeld.setSelected(false);
         stundenFeld.setValue(0);
         bewertungsFeld.setValue(0.00);
 
-        // Border
+        // Border auf Standard
         nameFeld.setBorder(new JTextField().getBorder());
         stundenFeld.setBorder(new JSpinner().getBorder());
         bewertungsFeld.setBorder(new JSpinner().getBorder());
 
+        // Deaktiviert die Speicher und Löschen Knöpfe
         this.buttonPanel.speicherButton.setEnabled(false);
         this.buttonPanel.löschenButton.setEnabled(false);
     }
@@ -297,14 +320,15 @@ public class ListeVorschau extends JPanel {
         stundenFeld.setBorder(new JSpinner().getBorder());
         bewertungsFeld.setBorder(new JSpinner().getBorder());
 
-        // Speichert das aktuelle Spiel ab
+        // Setze das aktuelle Spiel
         this.aktuellesSpiel = spiel;
 
+        // Aktiviert die Speicher und Löschen Knöpfe
         this.buttonPanel.speicherButton.setEnabled(true);
         this.buttonPanel.löschenButton.setEnabled(true);
 
-        // Setzt die UI der Vorschau zurück
-        // Sorgt dafür, dass die Inhalte perfekt in die Vorschau passen (z.B. Breite)
+        // Malt die Vorschau neu
+        // Sorgt dafür, dass die Breite der Vorschau sich dem Inhalt anpasst.
         this.updateUI();
     }
 
