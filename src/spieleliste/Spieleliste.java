@@ -6,6 +6,7 @@ import data.dao.SpieleDAO;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.MenuBar;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -17,8 +18,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import liste.Liste;
 import liste.ListeVorschau;
 import listener.SpieleWindowAdapter;
@@ -144,10 +148,30 @@ public class Spieleliste extends JFrame {
     }
 
     private JMenuBar createMenuBar() { 
-       
+       JMenuBar menuBar = new JMenuBar ();
+       // Setz Datei 
+        JMenu File = new JMenu( "Datei..." );
+        File.setMnemonic( 'D' );
+
+        JMenuItem mnuNewFile = new JMenuItem( "Neu" );
+        mnuNewFile.setMnemonic( 'N' );
+        File.add(mnuNewFile);
+
+        File.addSeparator();
+        JMenuItem mnuOpenFile = new JMenuItem( "Öffnen" );
+        mnuOpenFile.setMnemonic( 'Ö' );       
+        File.add(mnuOpenFile);
+        menuBar.add(File);
         
-        return null;
-        //To change body of generated methods, choose Tools | Templates.
+        JMenuItem mnuBeenden = new JMenuItem("Beenden");
+        mnuBeenden.setMnemonic('B');
+        File.add(mnuBeenden);
+        
+        JMenu UberUns = new JMenu( "Über uns" );
+        UberUns.setMnemonic( 'Ü' );        
+        menuBar.add( UberUns );
+        
+        return menuBar;
     }
 
 }
