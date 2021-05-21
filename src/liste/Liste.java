@@ -4,21 +4,21 @@ import data.Spiele;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import listener.SpieleListeListener;
+import panels.LabelPanel;
 
 /**
  * Stellt die Liste dar.<br>
  * Hier werden alle Spiele aufgelistet.
  *
- * @author Nichlas
- * @author Steeve
  * @author Jan-Tilo
+ * @author Steeve
+ * @author Nichlas
  */
 public class Liste extends JPanel {
 
@@ -53,7 +53,7 @@ public class Liste extends JPanel {
         setLayout(new BorderLayout());
 
         // Platziert die Komponenten auf die jeweilligen BorderLayout stellen
-        add(new JLabel("Alle aktuellen Spiele"), BorderLayout.NORTH);
+        add(new LabelPanel("Alle aktuellen Spiele"), BorderLayout.NORTH);
         add(new JScrollPane(liste), BorderLayout.CENTER);
     }
 

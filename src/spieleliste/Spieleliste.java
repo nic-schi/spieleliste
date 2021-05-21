@@ -28,13 +28,15 @@ import listener.SpieleWindowAdapter;
  * Baut das Anwendungsfenster auf.
  *
  * @author Nichlas
+ * @author Jan-Tilo
  * @author Steeve
- * @author Jan-Tilos
  */
 public class Spieleliste extends JFrame {
 
     public static Spieleliste spieleListe;
+
     private Spiele spiele = new Spiele();
+    private Liste liste;
 
     public static final String FILE_PATH = "./data/datenbank.db";
 
@@ -66,6 +68,8 @@ public class Spieleliste extends JFrame {
             SpieleDAO spieleDAO = new SpieleDAO(in, null);
             spieleDAO.read(spiele);
 
+            System.out.println(spiele.getAll().size() + " Spiele geladen!");
+
             // Schließen des Inputstreams
             in.close();
         } catch (IOException ex) {
@@ -78,10 +82,10 @@ public class Spieleliste extends JFrame {
 
         // Panel hinufügen
         // Listevorschau
-        ListeVorschau listeVorschau = new ListeVorschau();
+        ListeVorschau listeVorschau = new ListeVorschau(this);
 
         // Liste
-        Liste liste = new Liste(spiele, listeVorschau);
+        this.liste = new Liste(spiele, listeVorschau);
 
         c.add(liste, BorderLayout.CENTER);
         c.add(listeVorschau, BorderLayout.EAST);
@@ -104,6 +108,11 @@ public class Spieleliste extends JFrame {
     // Gibt alle aktuellen Spiele zurück
     public Spiele getSpiele() {
         return this.spiele;
+    }
+
+    // Gibt die Liste zurück
+    public Liste getListe() {
+        return this.liste;
     }
 
     // Gibt einen Outputsream zurück

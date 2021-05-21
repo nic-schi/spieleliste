@@ -1,4 +1,3 @@
-
 package listener;
 
 import java.awt.event.WindowAdapter;
@@ -8,10 +7,10 @@ import spieleliste.Spieleliste;
 
 /**
  * Handled WindowEvents die vom Frame aus ausgehen
- * 
+ *
+ * @author Jan-Tilo
  * @author Nichlas
  * @author Steeve
- * @author Jan-Tilo
  */
 public class SpieleWindowAdapter extends WindowAdapter {
 
@@ -65,8 +64,6 @@ public class SpieleWindowAdapter extends WindowAdapter {
         //        contentPane.add(content);
 
         //        dialog.setVisible(true);
-
-        
         // gibt einen Dialog aus, der aktuell YES und NO anzeigt.
         int returned = JOptionPane.showConfirmDialog(frame, "Es könnten Daten verloren gehen.", "Sind Sie Sicher?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         // Prüfung der Auswahl

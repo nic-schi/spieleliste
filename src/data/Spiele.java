@@ -24,6 +24,21 @@ public class Spiele {
         return spiele.get(index);
     }
 
+    // Entfernt das mitgegebene Spiel
+    public boolean remove(Spiel spiel) {
+        return this.spiele.remove(spiel);
+    }
+
+    // Guckt nach, ob ein Spiel bereits vorhanden ist
+    public boolean hatSpiel(String bezeichnung) {
+        for (Spiel spiel : spiele) {
+            if (spiel.getName().equalsIgnoreCase(bezeichnung)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Gibt die Liste aller Spiele zurück
     public ArrayList<Spiel> getAll() {
         return this.spiele;
