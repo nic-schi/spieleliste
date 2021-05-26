@@ -18,7 +18,7 @@ public class LabelPanel extends JPanel {
         JLabel label = new JLabel(text);
 
         // Farben
-        setBackground(Color.DARK_GRAY);
+        setBackground(new Color(0, 0, 0));
         label.setForeground(Color.LIGHT_GRAY);
 
         label.setAlignmentX(JLabel.CENTER_ALIGNMENT);

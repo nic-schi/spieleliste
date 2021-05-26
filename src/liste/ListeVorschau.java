@@ -81,13 +81,21 @@ public class ListeVorschau extends JPanel {
                 Spiel spiel = getFelderWerte(new Spiel());
 
                 if (spiel != null) {
-                    // Lädt die Formularwerte in das aktuelle Spiel ein
-                    getFelderWerte(aktuellesSpiel);
+                    // guck nach, ob das Spiel bereits vorhanden ist
+                    if (frame.getSpiele().hatSpiel(spiel.getName()) && !spiel.getName().equalsIgnoreCase(aktuellesSpiel.getName())) {
+                        nameFeld.setBorder(ListeVorschau.this.errorBorder);
 
-                    // Speichern der Spiele
-                    speichern();
+                        // gibt einen Dialog aus, der aktuell OK und CANCEL anzeigt.
+                        JOptionPane.showConfirmDialog(frame, "Dieses Spiel ist bereits vorhanden", "Falsche Eingabe!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        // Lädt die Formularwerte in das aktuelle Spiel ein
+                        getFelderWerte(aktuellesSpiel);
 
-                    System.out.println("Spiel gespeichert \t-->\t " + aktuellesSpiel);
+                        // Speichern der Spiele
+                        speichern();
+
+                        System.out.println("Spiel gespeichert \t-->\t " + aktuellesSpiel);
+                    }
                 }
             } else if (e.getSource().equals(löschenButton)) {
                 // Löschen
