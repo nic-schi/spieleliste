@@ -48,7 +48,7 @@ public class Spieleliste extends JFrame {
         setTitle("Spieleliste");
 
         // Setzt die Größe des Fenster auf minimum x, y
-        setMinimumSize(new Dimension(500, 400));
+        setMinimumSize(new Dimension(500, 450));
 
         // Setzt das Fenster in die Mitte
         setLocationRelativeTo(null);
