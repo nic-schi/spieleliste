@@ -1,5 +1,9 @@
 # Spieleliste
-Eine Spieleliste zum Verwalten von bereits gespielten Spielen.
+Eine Spieleliste zum Verwalten von bereits gespielten Spielen; Entwickelt in Java.<br>
+Die Verwaltung erfolgt über Dateien.
+
+**Benutzte Frameworks**
+- Swing
 
 ## Autoren
 - [Nichlas Schipper](https://github.com/nic-schi)
