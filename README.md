@@ -2,6 +2,6 @@
 Eine Spieleliste zum Verwalten von bereits gespielten Spielen.
 
 ## Autoren
-- Nichlas Schipper
-- Jan-Tilo Meyer
-- Steeve Junior
+- [Nichlas Schipper](https://github.com/nic-schi)
+- [Jan-Tilo Meyer](https://github.com/UngBuffel)
+- [Steeve Junior](https://github.com/Steeve8)
