@@ -179,19 +179,28 @@ public class DateiMenu extends JMenu implements ActionListener {
                 try {
                     // Erstellt die Datei, falls diese noch nicht vorhanden ist
                     File savedfile = new File(newPath);
+
+                    int returned = JOptionPane.YES_OPTION;
+                    if (savedfile.exists()) {
+                        // gibt einen Dialog aus, der aktuell YES und NO anzeigt.
+                        returned = JOptionPane.showConfirmDialog(frame, "Die Datei ist bereits vorhanden!\nMöchten Sie die Datei überschreiben?", "Sind Sie Sicher?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    }
                     savedfile.createNewFile();
 
-                    // Hole Outputstream
-                    DataOutputStream out = Spieleliste.getOutputStream(newPath);
+                    // Prüfung der Auswahl
+                    if (returned == JOptionPane.YES_OPTION) {
+                        // Hole Outputstream
+                        DataOutputStream out = Spieleliste.getOutputStream(newPath);
 
-                    // Inititalisiere neues SpieleDAO objekt. Dabei ist der InputStream null
-                    SpieleDAO spieleDAO = new SpieleDAO(null, out);
-                    spieleDAO.write(frame.getSpiele());
+                        // Inititalisiere neues SpieleDAO objekt. Dabei ist der InputStream null
+                        SpieleDAO spieleDAO = new SpieleDAO(null, out);
+                        spieleDAO.write(frame.getSpiele());
 
-                    // Ausgabe
-                    System.out.println("Speichere Datei: \"" + Spieleliste.FILE_PATH + "\"" + "\t-->\t" + frame.getSpiele().getAll().size() + " Spiele gespeichert!");
+                        // Ausgabe
+                        System.out.println("Speichere Datei: \"" + Spieleliste.FILE_PATH + "\"" + "\t-->\t" + frame.getSpiele().getAll().size() + " Spiele gespeichert!");
 
-                    out.close();
+                        out.close();
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(DateiMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
