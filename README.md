@@ -5,6 +5,12 @@ Die Verwaltung erfolgt über Dateien.
 **Benutzte Frameworks**
 - Swing
 
+**Datenfelder eines Spiels**
+- Bezeichnung   (String)
+- Durchgespielt (Boolean)
+- Stunden       (Ganzzahl)
+- Bewertung     (Gleitkommazahl)
+
 ## Autoren
 - [Nichlas Schipper](https://github.com/nic-schi)
 - [Jan-Tilo Meyer](https://github.com/UngBuffel)
