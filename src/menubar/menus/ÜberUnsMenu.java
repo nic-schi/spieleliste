@@ -54,6 +54,7 @@ public class ÜberUnsMenu extends JMenu implements ActionListener {
                 + "\n"
                 + "Entwickelt auf Java 16.0\n"
                 + "Benutzte Frameworks: Swing\n"
+                + "Github-Link: github.com/nic-schi/spieleliste\n"
                 + "Aktuelle Datenbank: \"" + new File(Spieleliste.FILE_PATH).getPath() + "\"", "Über uns", JOptionPane.INFORMATION_MESSAGE);
     }
 
