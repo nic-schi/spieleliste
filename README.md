@@ -15,3 +15,8 @@ Die Verwaltung erfolgt über Dateien.
 - [Nichlas Schipper](https://github.com/nic-schi)
 - [Jan-Tilo Meyer](https://github.com/UngBuffel)
 - [Steeve Junior](https://github.com/Steeve8)
+
+# Die GUI
+![grafik](https://github.com/nic-schi/spieleliste/assets/43421445/14515b3c-f79f-4bd0-9369-f02e50632b44)
+
+
